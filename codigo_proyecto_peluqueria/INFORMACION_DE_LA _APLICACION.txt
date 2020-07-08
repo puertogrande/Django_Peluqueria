@@ -1,0 +1,14 @@
+EL proyecto permite a los usuarios ver los peluqueros que trabajan su sexo, los tipos de pelados o servicios 
+disponibles con el precio de estos y los peluqueros que trabajan su género.
+
+El administrador puede ademas introducir nuevos peluqueros(al introducir un nuevo peluquero hay que cambiar el 
+dni por defecto y poner uno nuevo) e introducir nuevos servicios.
+
+También se puede concertar un servicio con un peluquero para que se registre en la base de datos.
+
+Se han comprobado los errores en el registro de usuario y en el login y no se permite acceder a ciertas urls si no se esta identificado 
+administrador.
+
+El control de que no aparezcan los servicios que ya estan seleccionados no se a podido completar con jquery.
+
+El resto del programa no debería dar errores en caso contrario su aportación será valiosa para mejorar la aplicación. 

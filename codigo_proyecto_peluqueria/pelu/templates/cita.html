@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Peluqueros para ti{% endblock %}
+
+{% block content %}
+<h3> Elige lo que te quieres hacer y te vamos a dejar perfe pa ronear por el barrio </h3>
+<div class="decoracion">
+    <form action="/procesar/" method="post" id="creacion"> 
+        <h3>Estos son nuestros horarios </h3> 
+        {% csrf_token %}
+        
+            Pelado
+            <select name="servicio" id="servicio">
+            {% for servicio in servicios %}
+                <option value={{servicio.nombre}}>{{servicio.nombre}}</option>
+            {% endfor %}
+            </select>
+            Peluquero
+            <select name="peluquero" id="peluquero" onchange="on_change()">
+            {% for peluquero in peluqueros %}
+                <option value={{peluquero.nombre}}>{{peluquero.apellidos}}</option>
+            {% endfor %} 
+            </select> 
+
+            <select name="horas" id="horas" onchange="on_change()">
+                {% for hora in horasTrabajo %}
+                        <option value={{hora.0}}>{{hora.1}}</option> hora_elegida
+                {% endfor %} 
+            </select> 
+            
+        <input type="submit" onclick="crearFormulario()"   value="Enviar" id="enviar"><br><br><br>
+    </form>
+    <img src="/static/img/camaron.jpg">
+    <p>“La pureza no se puede perder nunca cuando uno la lleva dentro de verdad”.</p>
+</div>
+
+<script>
+    function crearFormulario() {
+        var servicio= document.getElementById("servicio");
+        var servicio_elegido = servicio.options[servicio.selectedIndex].value;
+        var peluquero= document.getElementById("peluquero");
+        var peluquero_elegido = peluquero.options[peluquero.selectedIndex].value;
+        var hora=document.getElementById("horas");
+        var hora_elegida = hora.options[horas.selectedIndex].value;
+        //alert(peluquero_elegido)
+        alert(hora_elegida)
+        var input = document.createElement("input");
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", "peluquero");
+        input.setAttribute("value", peluquero_elegido);
+        //append to form element that you want .
+        document.getElementById("creacion").appendChild(input);
+        var input_pelado = document.createElement("input");
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", "servicio");
+        input.setAttribute("value", servicio_elegido);
+        //append to form element that you want .
+        document.getElementById("creacion").appendChild(input_pelado);
+
+        var input_hora = document.createElement("input");
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", "hora");
+        input.setAttribute("value", hora_elegida);
+        //append to form element that you want .
+        document.getElementById("creacion").appendChild(input_hora);
+        }
+
+    function on_change(){
+        document.getElementById("enviar").disabled = false;
+        var servicio= document.getElementById("servicio");
+        var servicio_elegido = servicio.options[servicio.selectedIndex].value;
+        var peluquero= document.getElementById("peluquero");
+        var peluquero_elegido = peluquero.options[peluquero.selectedIndex].value;
+        var hora=document.getElementById("horas");
+        var hora_elegida = hora.options[horas.selectedIndex].value;
+        
+        "{% for trabajo in trabajos %}";
+            var peluquero_trabajo = "{{trabajo.peluquero.nombre}}"
+           // alert(peluquero_trabajo);
+            //alert(peluquero_elegido);
+            var hora_js="{{trabajo.hora_js}}"
+            //alert("hora atributo")
+            //alert(hora_js)
+            //alert("hora seleccionada")
+            //alert(hora_elegida)
+            if(peluquero_trabajo==peluquero_elegido && hora_js==hora_elegida){
+                alert("ese peluquero ya tiene un trabajo a esa hora lo sentimos primico")
+                document.getElementById("enviar").disabled = true;
+            }
+            //pasar la hora a milisegundos o pasarle en la vista todas las horas a milisegundos
+
+        "{% endfor %}";
+    }
+</script>
+
+
+
+{% endblock %}

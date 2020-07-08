@@ -1,0 +1,45 @@
+body{
+	background-color:#DFB9E8;
+	width: 80%;
+	margin:auto;
+	text-align: center;
+}
+
+img{
+    width:200px;
+    height: 200px;
+}
+
+a{
+	color:brown;
+	font-weight: bold;
+}
+
+.contenedor{
+    width:80%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.elemento{
+    width: 40%;
+}
+
+.decoracion{	
+	width: 50%;
+	margin: auto;
+	border: 2px dashed orangered;
+	padding:2%;
+}
+
+ .decoracion img{
+	width: 500px;
+	height: 350px;
+}
+
+.principal img{
+	width: 500px;
+	height: 350px;
+}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Registro{% endblock %}
+{% block content %}
+    <h5>Nuevo inicio de sesion</h5>
+    <h2>Iniciar sesión</h2>
+
+<form method="POST">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Entrar</button>
+</form>
+
+<hr />
+    <h5>Si no puede acceder registrese</h5>
+    <a href="/registrar/">Registrar</a>
+{% endblock %}

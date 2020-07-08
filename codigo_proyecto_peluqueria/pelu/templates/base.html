@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>{% block title %}{% endblock %}</title>
+        <link href="/static/css/base.css" type="text/css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1> Peluqueria los Gitanos </h1>
+        {% if user.is_authenticated %}
+        <nav>
+                <ul>
+                    <a href="/principal/"><li> Principal</li></a>
+                    <a href="/peluqueros_usuario/"><li> Peluqueros</li></a>
+                    <a href="/servicios_usuario/"><li> Servicio </li></a>
+                    <a href="/cita_ajax/"><li> Cita </li></a>
+                    <a href="/logout/"><li> Cerrar sesion </li></a>
+                    {% if user.is_superuser %}
+                    <a href="/servicio/"><li> Introducir servicio </li></a>
+                    <a href="/peluquero/"><li> Introducir peluquero </li></a>
+                    
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        <!--a href="/static/css/base.css">enlace</a>-->
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

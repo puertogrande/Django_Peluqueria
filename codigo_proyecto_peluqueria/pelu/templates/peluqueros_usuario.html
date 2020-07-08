@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Peluqueros para ti{% endblock %}
+
+{% block content %}
+<div class="contenedor">
+    {% for peluquero in peluqueros %}
+       <div class="elemento"> <h3>{{peluquero}}</h3>
+        <img src="/{{peluquero.imagen.url}}">
+       <p> {{peluquero.descripcion}} </p>
+        </div>
+    {% endfor %}  
+{% endblock %}
+</div>
